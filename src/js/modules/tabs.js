@@ -2,14 +2,6 @@ const tabs = () => {
     function bindTabs(btnSelector) {
         const btns = document.querySelectorAll(btnSelector);
         const contents = document.querySelectorAll('[data-tab]');
-        const list = document.querySelector('.decoration_slider');
-
-        list.addEventListener('click', (e) => {
-            console.log(e.target.className);
-            if (e.target === btns) {
-                console.log('true');
-            }
-        });
 
 
         btns.forEach(btn => {

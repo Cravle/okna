@@ -14928,14 +14928,6 @@ var tabs = function tabs() {
   function bindTabs(btnSelector) {
     var btns = document.querySelectorAll(btnSelector);
     var contents = document.querySelectorAll('[data-tab]');
-    var list = document.querySelector('.decoration_slider');
-    list.addEventListener('click', function (e) {
-      console.log(e.target.className);
-
-      if (e.target === btns) {
-        console.log('true');
-      }
-    });
     btns.forEach(function (btn) {
       var id = ".".concat(btn.id);
       var content = document.querySelector(id);
