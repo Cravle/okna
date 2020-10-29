@@ -14837,10 +14837,13 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+
 
 
 window.addEventListener('DOMContentLoaded', function (e) {
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
 
 /***/ }),
@@ -14877,9 +14880,9 @@ var modals = function modals() {
       item.addEventListener('click', function (e) {
         if (e.target) {
           e.preventDefault();
-        }
+          showModal(modal);
+        } //document.body.classList.add('modal-open');
 
-        showModal(modal); //document.body.classList.add('modal-open');
       });
     });
     close.addEventListener('click', function (e) {
@@ -14893,15 +14896,68 @@ var modals = function modals() {
   }
 
   function showModalByTime(selector, time) {
-    setTimeout(showModal, time);
-  }
+    var modal = document.querySelector(selector);
+    setTimeout(function () {
+      showModal(modal);
+    }, time);
+  } //showModalByTime('.popup', 60000);
+
 
   bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
   bindModal('.phone_link', '.popup', '.popup .popup_close');
-  showModalByTime('.popup', 3000);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
+
+/***/ }),
+
+/***/ "./src/js/modules/tabs.js":
+/*!********************************!*\
+  !*** ./src/js/modules/tabs.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var tabs = function tabs() {
+  function bindTabs(btnSelector) {
+    var btns = document.querySelectorAll(btnSelector);
+    var contents = document.querySelectorAll('[data-tab]');
+    var list = document.querySelector('.decoration_slider');
+    list.addEventListener('click', function (e) {
+      console.log(e.target.className);
+
+      if (e.target === btns) {
+        console.log('true');
+      }
+    });
+    btns.forEach(function (btn) {
+      var id = ".".concat(btn.id);
+      var content = document.querySelector(id);
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var btns = document.querySelectorAll(btnSelector);
+        contents.forEach(function (item) {
+          item.style.display = 'none';
+        });
+        btns.forEach(function (item) {
+          item.classList.remove('after_click');
+        });
+        btn.classList.add('after_click');
+        content.style.display = "block";
+      });
+    });
+  }
+
+  bindTabs('.no_click');
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (tabs);
 
 /***/ }),
 

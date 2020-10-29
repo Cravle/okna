@@ -1,5 +1,6 @@
 const modals = () => {
     function showModal(modal) {
+
         modal.style.display = "block";
         document.body.style.overflow = "hidden";
     }
@@ -18,8 +19,9 @@ const modals = () => {
             item.addEventListener('click', (e) => {
                 if (e.target) {
                     e.preventDefault();
+                    showModal(modal);
                 }
-                showModal(modal);
+
                 //document.body.classList.add('modal-open');
             });
         });
@@ -37,13 +39,16 @@ const modals = () => {
     }
 
     function showModalByTime(selector, time) {
-        setTimeout(showModal, time);
+        const modal = document.querySelector(selector);
+        setTimeout(() => {
+            showModal(modal);
+        }, time);
     }
 
-
+    //showModalByTime('.popup', 60000);
     bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
     bindModal('.phone_link', '.popup', '.popup .popup_close');
-    showModalByTime('.popup', 3000);
+
 };
 
 export default modals;
